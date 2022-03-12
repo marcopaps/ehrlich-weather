@@ -19,7 +19,7 @@ export const DefaultButton = (props: ButtonProps) => {
 
 export const LinkButton = (props: LinkButtonProps) => {
   return (
-    <Link className="border-2 p-2" to={props.to}>
+    <Link className="underline text-blue-600" to={props.to}>
       {props.label}
     </Link>
   );
