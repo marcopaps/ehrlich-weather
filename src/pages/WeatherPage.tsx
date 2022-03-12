@@ -1,5 +1,5 @@
 import { LinkButton } from "../components";
-import BasicLayout from "../layouts/Basic";
+import { BasicLayout } from "../layouts";
 
 const Th = ({ children }: { children: React.ReactChild }) => {
   return (

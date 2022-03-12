@@ -1,5 +1,5 @@
 import { DefaultButton, SearchBox } from "../components";
-import BasicLayout from "../layouts/Basic";
+import { BasicLayout } from "../layouts";
 
 const HomePage = () => {
   return (
