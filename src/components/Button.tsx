@@ -1,9 +1,15 @@
+import { Link } from "react-router-dom";
+
 interface ButtonProps {
   label: string;
   onClick?: () => void;
 }
 
-const Button = (props: ButtonProps) => {
+interface LinkButtonProps extends ButtonProps {
+  to: string;
+}
+
+export const DefaultButton = (props: ButtonProps) => {
   return (
     <button className="border-2 p-2" onClick={props.onClick}>
       {props.label}
@@ -11,4 +17,10 @@ const Button = (props: ButtonProps) => {
   );
 };
 
-export default Button;
+export const LinkButton = (props: LinkButtonProps) => {
+  return (
+    <Link className="border-2 p-2" to={props.to}>
+      {props.label}
+    </Link>
+  );
+};
