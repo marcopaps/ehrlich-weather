@@ -1,7 +1,11 @@
-interface PageProps {}
+import BasicLayout from "../layouts/Basic";
 
-const WeatherPage = (props: PageProps) => {
-  return <div>{"Weather page"}</div>;
+const WeatherPage = () => {
+  return (
+    <BasicLayout>
+      <div>{"Weather page"}</div>
+    </BasicLayout>
+  );
 };
 
 export default WeatherPage;
