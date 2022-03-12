@@ -1,12 +1,16 @@
+import Button from "../components/Button";
 import BasicLayout from "../layouts/Basic";
 
 const LandingPage = () => {
   return (
     <BasicLayout>
-      <div className="text-xl px-72">
+      <div className="text-xl px-96 py-24">
         {
           "Welcome to the weather forecast web application. Please login with your Github user to use the application and view the weather in your city."
         }
+        <div className={"mt-8"}>
+          <Button label={"Login"} />
+        </div>
       </div>
     </BasicLayout>
   );

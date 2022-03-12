@@ -1,17 +1,16 @@
 import Button from "../components/Button";
-
+import { useIsLoggedIn } from "../hooks";
 interface LayoutProps {
   children: React.ReactNode;
 }
 
-interface NavigationProps {
-  isLoggedIn: boolean;
-}
-const Navigation = (props: NavigationProps) => {
+const Navigation = () => {
+  const isLoggedIn = useIsLoggedIn();
+
   return (
     <div className="border-b-2 py-8 px-24 flex w-full">
       <div className="text-2xl">Weather Forecast</div>
-      {props.isLoggedIn && (
+      {isLoggedIn && (
         <div className="ml-auto">
           <Button label={"Logout"} />
         </div>
@@ -23,7 +22,7 @@ const Navigation = (props: NavigationProps) => {
 const HomePage = (props: LayoutProps) => {
   return (
     <main>
-      <Navigation isLoggedIn={true} />
+      <Navigation />
       <div className="py-8 px-24">{props.children}</div>
     </main>
   );

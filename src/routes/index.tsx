@@ -1,10 +1,10 @@
 import { publicRoutes } from "./public";
 import { protectedRoutes } from "./protected";
 import { BrowserRouter, useRoutes } from "react-router-dom";
+import { useIsLoggedIn } from "../hooks";
 
 const Routes = () => {
-  // TODO: Auth
-  const isLoggedIn = true;
+  const isLoggedIn = useIsLoggedIn();
   const routes = isLoggedIn ? protectedRoutes : publicRoutes;
 
   const element = useRoutes([...routes]);
