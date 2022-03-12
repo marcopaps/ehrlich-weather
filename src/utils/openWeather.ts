@@ -16,7 +16,9 @@ export const getLocations = (query: string) => {
   );
 };
 
-export const getWeatherData = (lat: number, lon: number) => {
+export const getWeatherData = (lat: string, lon: string) => {
+  if (!lat || !lon) return;
+
   return weatherInstance.get(
     `weather?lat=${lat}&lon=${lon}&appid=${OPEN_WEATHER_APP_ID}`
   );
