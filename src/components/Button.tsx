@@ -7,6 +7,7 @@ interface ButtonProps {
 
 interface LinkButtonProps extends ButtonProps {
   to: string;
+  search?: string;
 }
 
 export const DefaultButton = (props: ButtonProps) => {
@@ -19,7 +20,10 @@ export const DefaultButton = (props: ButtonProps) => {
 
 export const LinkButton = (props: LinkButtonProps) => {
   return (
-    <Link className="underline text-blue-600" to={props.to}>
+    <Link
+      className="underline text-blue-600"
+      to={{ pathname: props.to, search: props.search }}
+    >
       {props.label}
     </Link>
   );

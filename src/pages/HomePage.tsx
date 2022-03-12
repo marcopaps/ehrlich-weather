@@ -1,3 +1,4 @@
+import qs from "query-string";
 import { useState } from "react";
 import { useQuery } from "react-query";
 import { DefaultButton, SearchBox, LinkButton } from "../components";
@@ -31,13 +32,20 @@ const HomePage = () => {
     setQuery(textValue);
   };
 
-  console.log({ data });
-
   const LocationCard = (props: LocationCardProps) => {
     const label = `${props.name}, ${props.country}`;
+
+    // eslint-disable-next-line no-restricted-globals
+    const queryParam = qs.parse(location.search);
+    const search = qs.stringify({
+      ...queryParam,
+      lat: props.lat,
+      lon: props.lon,
+    });
+
     return (
       <div className="border-t-2 py-4">
-        <LinkButton to="/weather" label={label} />
+        <LinkButton to={"/weather"} search={search} label={label} />
         <div>{`Geo coordinates [${props.lat}, ${props.lon}]`}</div>
       </div>
     );
