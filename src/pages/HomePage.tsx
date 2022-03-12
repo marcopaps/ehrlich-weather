@@ -1,4 +1,4 @@
-import { Button, SearchBox } from "../components";
+import { DefaultButton, SearchBox } from "../components";
 import BasicLayout from "../layouts/Basic";
 
 const HomePage = () => {
@@ -9,7 +9,7 @@ const HomePage = () => {
         <div className="text-lg my-4">https://github.com/smithjohn</div>
         <div className="my-16 block">
           <SearchBox placeholder="City" />
-          <Button label="Display weather" />
+          <DefaultButton label="Display weather" />
         </div>
       </div>
     </BasicLayout>

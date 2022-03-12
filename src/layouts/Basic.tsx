@@ -1,4 +1,4 @@
-import Button from "../components/Button";
+import { DefaultButton } from "../components";
 import { useIsLoggedIn } from "../hooks";
 interface LayoutProps {
   children: React.ReactNode;
@@ -12,7 +12,7 @@ const Navigation = () => {
       <div className="text-2xl">Weather Forecast</div>
       {isLoggedIn && (
         <div className="ml-auto">
-          <Button label={"Logout"} />
+          <DefaultButton label={"Logout"} />
         </div>
       )}
     </div>

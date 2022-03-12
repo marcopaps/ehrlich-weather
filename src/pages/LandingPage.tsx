@@ -1,4 +1,4 @@
-import Button from "../components/Button";
+import { DefaultButton } from "../components";
 import BasicLayout from "../layouts/Basic";
 
 const LandingPage = () => {
@@ -9,7 +9,7 @@ const LandingPage = () => {
           "Welcome to the weather forecast web application. Please login with your Github user to use the application and view the weather in your city."
         }
         <div className={"mt-8"}>
-          <Button label={"Login"} />
+          <DefaultButton label={"Login"} />
         </div>
       </div>
     </BasicLayout>
