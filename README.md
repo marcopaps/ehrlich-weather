@@ -48,4 +48,10 @@ $ yarn start
 
 ### Known issues
 
-- Refreshing the page after logged in, renders the landing page
+- Refreshing the page after logged in, renders the landing page for a moment
+
+  Tried to debug, seems the issue is coming from `<Auth0Provider ... redirectUri={window.location.origin}>`.
+
+  The value of `isAuthenticated` from `useAuth0` returns `false` then updates to `true` after a second.
+
+- Going back to the home page from weather page does clear the search term and the location results.
