@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react";
 
 interface ButtonProps {
   label: string;
@@ -27,4 +28,14 @@ export const LinkButton = (props: LinkButtonProps) => {
       {props.label}
     </Link>
   );
+};
+
+export const LoginButton = () => {
+  const { loginWithRedirect } = useAuth0();
+  return <DefaultButton label={"Login"} onClick={() => loginWithRedirect()} />;
+};
+
+export const LogoutButton = () => {
+  const { logout } = useAuth0();
+  return <DefaultButton label={"Logout"} onClick={() => logout()} />;
 };
