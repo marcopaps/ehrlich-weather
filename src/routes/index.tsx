@@ -1,6 +1,6 @@
 import { publicRoutes } from "./public";
 import { protectedRoutes } from "./protected";
-import { BrowserRouter, useRoutes } from "react-router-dom";
+import { useRoutes } from "react-router-dom";
 import { useIsLoggedIn } from "../hooks";
 
 const Routes = () => {
@@ -12,9 +12,5 @@ const Routes = () => {
 };
 
 export const AppRoutes = () => {
-  return (
-    <BrowserRouter>
-      <Routes />
-    </BrowserRouter>
-  );
+  return <Routes />;
 };

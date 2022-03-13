@@ -1,12 +1,13 @@
 import { AppRoutes } from "./routes";
 import { QueryClientProvider, QueryClient } from "react-query";
-import "./index.css";
+import { BrowserRouter } from "react-router-dom";
 import { Auth0Provider } from "@auth0/auth0-react";
+import "./index.css";
 
 const queryClient = new QueryClient();
 
-const domain = process.env.REACT_APP_AUTH0_CLIENT_DOMAIN || "";
-const clientId = process.env.REACT_APP_AUTH0_CLIENT_ID || "";
+const domain = process.env.REACT_APP_AUTH0_CLIENT_DOMAIN as string;
+const clientId = process.env.REACT_APP_AUTH0_CLIENT_ID as string;
 
 function App() {
   return (
@@ -16,7 +17,9 @@ function App() {
       redirectUri={window.location.origin}
     >
       <QueryClientProvider client={queryClient}>
-        <AppRoutes />
+        <BrowserRouter>
+          <AppRoutes />
+        </BrowserRouter>
       </QueryClientProvider>
     </Auth0Provider>
   );
