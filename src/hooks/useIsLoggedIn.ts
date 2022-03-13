@@ -1,6 +1,8 @@
-// TODO: Auth
+import { useAuth0 } from "@auth0/auth0-react";
+
 const useIsLoggedIn = () => {
-  return true;
+  const { isAuthenticated } = useAuth0();
+  return isAuthenticated;
 };
 
 export default useIsLoggedIn;
