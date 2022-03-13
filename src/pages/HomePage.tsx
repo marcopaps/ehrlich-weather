@@ -1,7 +1,13 @@
+import { useAuth0 } from "@auth0/auth0-react";
 import qs from "query-string";
 import { useState } from "react";
 import { useQuery } from "react-query";
-import { DefaultButton, SearchBox, LinkButton } from "../components";
+import {
+  DefaultButton,
+  SearchBox,
+  DefaultLink,
+  ExternalLink,
+} from "../components";
 import { BasicLayout } from "../layouts";
 import { getLocations } from "../utils/openWeather";
 
@@ -23,6 +29,7 @@ const HomePage = () => {
   const [textValue, setTextValue] = useState("");
   const [query, setQuery] = useState("");
   const { data, status } = useQuery(["locations", query], fetchLocations);
+  const { user } = useAuth0();
 
   const handleChangeText = (value: string) => {
     setTextValue(value);
@@ -35,8 +42,7 @@ const HomePage = () => {
   const LocationCard = (props: LocationCardProps) => {
     const label = `${props.name}, ${props.country}`;
 
-    // eslint-disable-next-line no-restricted-globals
-    const queryParam = qs.parse(location.search);
+    const queryParam = qs.parse(window.location.search);
     const search = qs.stringify({
       ...queryParam,
       lat: props.lat,
@@ -44,9 +50,9 @@ const HomePage = () => {
     });
 
     return (
-      <div className="border-t-2 py-4">
-        <LinkButton to={"/weather"} search={search} label={label} />
-        <div>{`Geo coordinates [${props.lat}, ${props.lon}]`}</div>
+      <div className="border-t py-4 text-left">
+        <DefaultLink to={"/weather"} search={search} label={label} />
+        <div className="py-4">{`Geo coordinates: [${props.lat}, ${props.lon}]`}</div>
       </div>
     );
   };
@@ -67,23 +73,36 @@ const HomePage = () => {
 
   return (
     <BasicLayout>
-      <div className="block text-center">
-        <div className="text-xl">John Smith</div>
-        <div className="text-lg my-4">https://github.com/smithjohn</div>
-        <div className="my-16 block">
-          <SearchBox
-            placeholder="City"
-            onChange={handleChangeText}
-            value={textValue}
-          />
-          <DefaultButton label="Search" onClick={handleSubmit} />
-
-          {status === "success" && (
-            <div className="flex justify-center flex-col w-96 mx-auto my-24">
-              {data?.data.length && <Locations />}
-            </div>
+      <div className="grid grid-cols-1 md:grid-cols-3 text-center">
+        <div></div>
+        <div>
+          {user?.name && <div className="text-xl">{user?.name}</div>}
+          {user?.nickname && (
+            <ExternalLink
+              to={`https://github.com/${user?.nickname}`}
+              label={`https://github.com/${user?.nickname}`}
+            />
           )}
+          <div className="my-16 block">
+            <SearchBox
+              placeholder="City"
+              onChange={handleChangeText}
+              value={textValue}
+            />
+
+            <div className="my-4">
+              <DefaultButton label="Display Weather" onClick={handleSubmit} />
+            </div>
+
+            {status === "success" && (
+              <div className="flex justify-center flex-col w-full my-24">
+                {data?.data.length && <Locations />}
+              </div>
+            )}
+          </div>
         </div>
+
+        <div></div>
       </div>
     </BasicLayout>
   );

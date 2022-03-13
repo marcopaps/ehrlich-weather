@@ -1,4 +1,18 @@
-import { DefaultButton, LinkButton, LoginButton, LogoutButton } from "./Button";
+import {
+  DefaultButton,
+  DefaultLink,
+  ExternalLink,
+  LinkButton,
+  LoginButton,
+  LogoutButton,
+} from "./Button";
 
 export { default as SearchBox } from "./SearchBox";
-export { DefaultButton, LinkButton, LoginButton, LogoutButton };
+export {
+  DefaultButton,
+  DefaultLink,
+  ExternalLink,
+  LinkButton,
+  LoginButton,
+  LogoutButton,
+};

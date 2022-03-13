@@ -6,7 +6,7 @@ interface ButtonProps {
   onClick?: () => void;
 }
 
-interface LinkButtonProps extends ButtonProps {
+interface LinkProps extends ButtonProps {
   to: string;
   search?: string;
 }
@@ -19,7 +19,7 @@ export const DefaultButton = (props: ButtonProps) => {
   );
 };
 
-export const LinkButton = (props: LinkButtonProps) => {
+export const DefaultLink = (props: LinkProps) => {
   return (
     <Link
       className="underline text-blue-600"
@@ -27,6 +27,27 @@ export const LinkButton = (props: LinkButtonProps) => {
     >
       {props.label}
     </Link>
+  );
+};
+
+export const LinkButton = (props: LinkProps) => {
+  return (
+    <Link to={{ pathname: props.to, search: props.search }}>
+      <DefaultButton label={props.label} />
+    </Link>
+  );
+};
+
+export const ExternalLink = (props: LinkProps) => {
+  return (
+    <a
+      className="text-blue-600"
+      href={props.to}
+      target="_blank"
+      rel="noreferrer"
+    >
+      {props.label}
+    </a>
   );
 };
 

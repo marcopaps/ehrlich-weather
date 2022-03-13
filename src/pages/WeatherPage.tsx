@@ -1,6 +1,7 @@
 import { useQuery } from "react-query";
+import dayjs from "dayjs";
 import { LinkButton } from "../components";
-import useQueryParams from "../hooks/useQueryParams";
+import { useIsMobile, useQueryParams } from "../hooks";
 import { BasicLayout } from "../layouts";
 import { getWeatherData } from "../utils/openWeather";
 
@@ -29,6 +30,7 @@ const fetchWeather = async ({ queryKey }: any) => {
 
 const WeatherPage = () => {
   const query = useQueryParams();
+  const isMobile = useIsMobile();
   const lat = query.get("lat") ?? "";
   const lon = query.get("lon") ?? "";
 
@@ -44,34 +46,44 @@ const WeatherPage = () => {
 
   return (
     <BasicLayout>
-      <div className="px-96">
-        <div>
-          <LinkButton label={"Back"} to={"/"} />
+      <div className="flex flex-col max-w-5xl m-auto">
+        {weatherData && status === "success" && (
+          <table className="border-collapse table-auto w-full text-sm font-medium mt-12">
+            <thead>
+              <tr>
+                <Th>{"Date (mm/dd/yyyy)"}</Th>
+                <Th>{"Temp (F)"}</Th>
+                {!isMobile && (
+                  <>
+                    <Th>{"Description"}</Th>
+                    <Th>{"Main"}</Th>
+                    <Th>{"Pressure"}</Th>
+                    <Th>{"Humidity"}</Th>
+                  </>
+                )}
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <Td>{dayjs.unix(date).format("MM/DD/YYYY")}</Td>
+                <Td>{temperature}</Td>
+                {!isMobile && (
+                  <>
+                    <Td>{description}</Td>
+                    <Td>{main}</Td>
+                    <Td>{pressure}</Td>
+                    <Td>{humidity}</Td>
+                  </>
+                )}
+              </tr>
+            </tbody>
+          </table>
+        )}
 
-          {weatherData && status === "success" && (
-            <table className="border-collapse table-auto w-full text-sm font-medium mt-12">
-              <thead>
-                <tr>
-                  <Th>{"Date (mm/dd/yyy)"}</Th>
-                  <Th>{"Temp (F)"}</Th>
-                  <Th>{"Description"}</Th>
-                  <Th>{"Main"}</Th>
-                  <Th>{"Pressure"}</Th>
-                  <Th>{"Humidity"}</Th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <Td>{date}</Td>
-                  <Td>{temperature}</Td>
-                  <Td>{description}</Td>
-                  <Td>{main}</Td>
-                  <Td>{pressure}</Td>
-                  <Td>{humidity}</Td>
-                </tr>
-              </tbody>
-            </table>
-          )}
+        <div className="flex my-24 w-full">
+          <div className="ml-auto">
+            <LinkButton to={"/"} label={"Back"} />
+          </div>
         </div>
       </div>
     </BasicLayout>

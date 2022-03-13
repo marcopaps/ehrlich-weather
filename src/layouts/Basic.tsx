@@ -24,7 +24,7 @@ const HomePage = (props: LayoutProps) => {
   return (
     <main>
       <Navigation />
-      <div className="py-8 px-24">{props.children}</div>
+      <div className="p-8 md:p-12">{props.children}</div>
     </main>
   );
 };
