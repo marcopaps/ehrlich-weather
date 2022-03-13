@@ -1,5 +1,6 @@
 import { LogoutButton } from "../components";
 import { useIsLoggedIn } from "../hooks";
+import logo from "../logo.png";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -9,8 +10,13 @@ const Navigation = () => {
   const isLoggedIn = useIsLoggedIn();
 
   return (
-    <div className="border-b-2 py-8 px-24 flex w-full">
-      <div className="text-2xl">Weather Forecast</div>
+    <div className="flex border-b-2 p-4 md:p-8 w-full">
+      <div className="flex items-center">
+        <img src={logo} className="h-12 w-16" alt="logo" />
+        <div className="text-xl md:text-2xl px-4 font-bold">
+          Weather Forecast
+        </div>
+      </div>
       {isLoggedIn && (
         <div className="ml-auto">
           <LogoutButton />
