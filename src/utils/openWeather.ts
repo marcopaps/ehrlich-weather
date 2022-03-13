@@ -3,7 +3,7 @@ import axios from "axios";
 const OPEN_WEATHER_APP_ID = process.env.REACT_APP_OPEN_WEATHER_APP_ID;
 
 const geoInstance = axios.create({
-  baseURL: "http://api.openweathermap.org/geo/1.0",
+  baseURL: "https://api.openweathermap.org/geo/1.0",
 });
 
 const weatherInstance = axios.create({
